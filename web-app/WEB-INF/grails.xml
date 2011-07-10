@@ -10,6 +10,7 @@
     <resource>democraciaplena.Localizacao</resource>
     <resource>democraciaplena.LancamentoCaixa</resource>
     <resource>democraciaplena.UsuarioController</resource>
+    <resource>democraciaplena.LancamentoCaixaController</resource>
     <resource>BootStrap</resource>
     <resource>resources</resource>
     <resource>DataSource</resource>
@@ -20,5 +21,6 @@
   <plugins>
     <plugin>AppEngineGrailsPlugin</plugin>
     <plugin>GormJpaGrailsPlugin</plugin>
+    <plugin>DemocraciaPlenaGrailsPlugin</plugin>
   </plugins>
 </grails>

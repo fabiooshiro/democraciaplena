@@ -1,6 +1,8 @@
 package democraciaplena
 
 import javax.persistence.*;
+
+import com.google.appengine.api.datastore.Key;
 // import com.google.appengine.api.datastore.Key;
 
 @Entity
@@ -17,6 +19,9 @@ class Usuario implements Serializable {
 	String tituloEleitor
 	
 	String cpf
+	
+	@OneToMany(mappedBy = "usuario")
+	private List<LancamentoCaixa> lancamentosCaixa = new ArrayList<LancamentoCaixa>();
 
     static constraints = {
     	id visible:false
