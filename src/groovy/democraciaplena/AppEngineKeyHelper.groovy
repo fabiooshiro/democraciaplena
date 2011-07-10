@@ -13,7 +13,6 @@ class AppEngineKeyHelper{
 	}
 	
 	def makeKey(String strKey){
-		println "strkey = " + strKey
 		def pk
 		strKey.split('/').each{ kpart ->
 			def m = kpart =~ "(\\w+)\\((\\d+)\\)"

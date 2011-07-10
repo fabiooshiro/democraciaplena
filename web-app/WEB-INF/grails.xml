@@ -1,0 +1,26 @@
+<grails>
+  <resources>
+    <resource>org.grails.appengine.AppEngineReloadController</resource>
+    <resource>democraciaplena.Tipo</resource>
+    <resource>democraciaplena.Reclamacao</resource>
+    <resource>democraciaplena.Voto</resource>
+    <resource>democraciaplena.Mensagem</resource>
+    <resource>democraciaplena.Usuario</resource>
+    <resource>democraciaplena.Representante</resource>
+    <resource>democraciaplena.Localizacao</resource>
+    <resource>democraciaplena.LancamentoCaixa</resource>
+    <resource>democraciaplena.UsuarioController</resource>
+    <resource>democraciaplena.LancamentoCaixaController</resource>
+    <resource>BootStrap</resource>
+    <resource>resources</resource>
+    <resource>DataSource</resource>
+    <resource>Config</resource>
+    <resource>UrlMappings</resource>
+    <resource>BuildConfig</resource>
+  </resources>
+  <plugins>
+    <plugin>AppEngineGrailsPlugin</plugin>
+    <plugin>GormJpaGrailsPlugin</plugin>
+    <plugin>DemocraciaPlenaGrailsPlugin</plugin>
+  </plugins>
+</grails>

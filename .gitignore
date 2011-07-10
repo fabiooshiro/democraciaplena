@@ -1,2 +1,6 @@
 target
-web-app
+web-app/WEB-INF/classes
+web-app/WEB-INF/lib
+web-app/WEB-INF/plugins
+stacktrace.log
+
