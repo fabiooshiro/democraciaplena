@@ -2,7 +2,6 @@ package democraciaplena
 
 import java.io.Serializable;
 import javax.persistence.*;
-
 import com.google.appengine.api.datastore.Key;
 
 @Entity

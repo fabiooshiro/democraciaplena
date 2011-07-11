@@ -104,7 +104,7 @@ class UsuarioController {
 			if(!usuarioInstance.hasErrors() && usuarioInstance.validate()) {
 				jpaTemplate.persist(usuarioInstance)
 				jpaTemplate.flush()
-	            flash.message = "Usuario ${usuarioInstance.id} created"
+	            flash.message = "Usuario ${usuarioInstance.nome} created"
 	            redirect(action:show,id:usuarioInstance.id)
 	        }
 	        else {

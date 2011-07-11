@@ -10,7 +10,9 @@
     <resource>democraciaplena.Localizacao</resource>
     <resource>democraciaplena.LancamentoCaixa</resource>
     <resource>democraciaplena.UsuarioController</resource>
+    <resource>democraciaplena.VotoController</resource>
     <resource>democraciaplena.LancamentoCaixaController</resource>
+    <resource>democraciaplena.ReclamacaoController</resource>
     <resource>BootStrap</resource>
     <resource>resources</resource>
     <resource>DataSource</resource>
