@@ -1,16 +1,6 @@
 package democraciaplena
 
-import javax.persistence.*;
-
-import com.google.appengine.api.datastore.Key;
-// import com.google.appengine.api.datastore.Key;
-
-@Entity
-class Usuario implements Serializable {
-
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id
+class Usuario {
 
 	String nome
 	
@@ -20,8 +10,7 @@ class Usuario implements Serializable {
 	
 	String cpf
 	
-	@OneToMany(mappedBy = "usuario")
-	private List<LancamentoCaixa> lancamentosCaixa = new ArrayList<LancamentoCaixa>();
+	//private List<LancamentoCaixa> lancamentosCaixa = new ArrayList<LancamentoCaixa>();
 	
 	//@OneToMany//(mappedBy = "usuario")
 	//private List<Reclamacao> reclamacoes = new ArrayList<Reclamacao>();
@@ -33,10 +22,12 @@ class Usuario implements Serializable {
 	//private List<Voto> voltos = new ArrayList<Voto>();
 
 	String toString(){
-		"$nome [${id}]"	
+		"$nome"	
 	}
 	
     static constraints = {
-    	id visible:false
+    	cpf(unique: true)
+    	tituloEleitor(unique: true)
 	}
 }
+

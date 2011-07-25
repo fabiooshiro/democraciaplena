@@ -15,6 +15,12 @@ class UsuarioController {
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
+		Usuario.constraints.each{ k, v ->
+			println "${k}"
+			v.constraints.each{ k2, v2 ->
+				println "att ${k2} = ${v2}"
+			}
+		}
         [ usuarioInstanceList: Usuario.list( params ), usuarioInstanceTotal: Usuario.count() ]
     }
 
@@ -29,24 +35,22 @@ class UsuarioController {
     }
 
     def delete = {
-		Usuario.withTransaction {
-	        def usuarioInstance = Usuario.get( params.id )
-	        if(usuarioInstance) {
-	            try {
-	                usuarioInstance.delete(flush:true)
-	                flash.message = "Usuario ${params.id} deleted"
-	                redirect(action:list)
-	            }
-	            catch(org.springframework.dao.DataIntegrityViolationException e) {
-	                flash.message = "Usuario ${params.id} could not be deleted"
-	                redirect(action:show,id:params.id)
-	            }
-	        }
-	        else {
-	            flash.message = "Usuario not found with id ${params.id}"
-	            redirect(action:list)
-	        }			
-		}
+        def usuarioInstance = Usuario.get( params.id )
+        if(usuarioInstance) {
+            try {
+                usuarioInstance.delete(flush:true)
+                flash.message = "Usuario ${params.id} deleted"
+                redirect(action:list)
+            }
+            catch(org.springframework.dao.DataIntegrityViolationException e) {
+                flash.message = "Usuario ${params.id} could not be deleted"
+                redirect(action:show,id:params.id)
+            }
+        }
+        else {
+            flash.message = "Usuario not found with id ${params.id}"
+            redirect(action:list)
+        }			
     }
 
     def edit = {
@@ -62,32 +66,29 @@ class UsuarioController {
     }
 
     def update = {
-		Usuario.withTransaction {
-	        def usuarioInstance = Usuario.get( params.id )
-	        if(usuarioInstance) {
-	            if(params.version) {
-	                def version = params.version.toLong()
-	                if(usuarioInstance.version > version) {
-	                    
-	                    usuarioInstance.errors.rejectValue("version", "usuario.optimistic.locking.failure", "Another user has updated this Usuario while you were editing.")
-	                    render(view:'edit',model:[usuarioInstance:usuarioInstance])
-	                    return
-	                }
-	            }
-	            usuarioInstance.properties = params
-	            if(!usuarioInstance.hasErrors() && usuarioInstance.save()) {
-	                flash.message = "Usuario ${params.id} updated"
-	                redirect(action:show,id:usuarioInstance.id)
-	            }
-	            else {
-	                render(view:'edit',model:[usuarioInstance:usuarioInstance])
-	            }
-	        }
-	        else {
-	            flash.message = "Usuario not found with id ${params.id}"
-	            redirect(action:list)
-	        }			
-		}
+        def usuarioInstance = Usuario.get( params.id )
+        if(usuarioInstance) {
+            if(params.version) {
+                def version = params.version.toLong()
+                if(usuarioInstance.version > version) {
+                    usuarioInstance.errors.rejectValue("version", "usuario.optimistic.locking.failure", "Another user has updated this Usuario while you were editing.")
+                    render(view:'edit',model:[usuarioInstance:usuarioInstance])
+                    return
+                }
+            }
+            usuarioInstance.properties = params
+            if(!usuarioInstance.hasErrors() && usuarioInstance.save()) {
+                flash.message = "Usuario ${params.id} updated"
+                redirect(action:show,id:usuarioInstance.id)
+            }
+            else {
+                render(view:'edit',model:[usuarioInstance:usuarioInstance])
+            }
+        }
+        else {
+            flash.message = "Usuario not found with id ${params.id}"
+            redirect(action:list)
+        }			
     }
 
     def create = {
@@ -98,18 +99,13 @@ class UsuarioController {
 
     def save = {
         def usuarioInstance = new Usuario(params)
-		Usuario.withTransaction {
-			
-	        //if(usuarioInstance.save(flush:true)) {
-			if(!usuarioInstance.hasErrors() && usuarioInstance.validate()) {
-				jpaTemplate.persist(usuarioInstance)
-				jpaTemplate.flush()
-	            flash.message = "Usuario ${usuarioInstance.nome} created"
-	            redirect(action:show,id:usuarioInstance.id)
-	        }
-	        else {
-	            render(view:'create',model:[usuarioInstance:usuarioInstance])
-	        }
-		}
+		if(!usuarioInstance.hasErrors() && usuarioInstance.validate()) {
+			usuarioInstance.save(flush:true)
+            flash.message = "Usuario ${usuarioInstance.nome} created"
+            redirect(action:show,id:usuarioInstance.id)
+        }
+        else {
+            render(view:'create',model:[usuarioInstance:usuarioInstance])
+        }
     }
 }

@@ -20,7 +20,7 @@ class LancamentoCaixaController {
     }
 
     def show = {
-		def lancamentoCaixaInstance = LancamentoCaixa.getByKey(params.id)
+		def lancamentoCaixaInstance = LancamentoCaixa.get(params.id)
         if(!lancamentoCaixaInstance) {
             flash.message = "LancamentoCaixa not found with id '${params.id}'"
             redirect(action:list)
@@ -29,29 +29,26 @@ class LancamentoCaixaController {
     }
 
     def delete = {
-		LancamentoCaixa.withTransaction {
-	        def lancamentoCaixaInstance = LancamentoCaixa.getByKey( params.id )
-	        if(lancamentoCaixaInstance) {
-	            try {
-	                lancamentoCaixaInstance.delete(flush:true)
-	                flash.message = "LancamentoCaixa ${params.id} deleted"
-	                redirect(action:list)
-	            }
-	            catch(org.springframework.dao.DataIntegrityViolationException e) {
-	                flash.message = "LancamentoCaixa ${params.id} could not be deleted"
-	                redirect(action:show,id:params.id)
-	            }
-	        }
-	        else {
-	            flash.message = "LancamentoCaixa not found with id ${params.id}"
-	            redirect(action:list)
-	        }			
-		}
+        def lancamentoCaixaInstance = LancamentoCaixa.get( params.id )
+        if(lancamentoCaixaInstance) {
+            try {
+                lancamentoCaixaInstance.delete(flush:true)
+                flash.message = "LancamentoCaixa ${params.id} deleted"
+                redirect(action:list)
+            }
+            catch(org.springframework.dao.DataIntegrityViolationException e) {
+                flash.message = "LancamentoCaixa ${params.id} could not be deleted"
+                redirect(action:show,id:params.id)
+            }
+        }
+        else {
+            flash.message = "LancamentoCaixa not found with id ${params.id}"
+            redirect(action:list)
+        }			
     }
 
     def edit = {
-        def lancamentoCaixaInstance = LancamentoCaixa.getByKey( params.id )
-
+        def lancamentoCaixaInstance = LancamentoCaixa.get( params.id )
         if(!lancamentoCaixaInstance) {
             flash.message = "LancamentoCaixa not found with id ${params.id}"
             redirect(action:list)
@@ -62,32 +59,30 @@ class LancamentoCaixaController {
     }
 
     def update = {
-		LancamentoCaixa.withTransaction {
-	        def lancamentoCaixaInstance = LancamentoCaixa.getByKey( params.id )
-	        if(lancamentoCaixaInstance) {
-	            if(params.version) {
-	                def version = params.version.toLong()
-	                if(lancamentoCaixaInstance.version > version) {
-	                    
-	                    lancamentoCaixaInstance.errors.rejectValue("version", "lancamentoCaixa.optimistic.locking.failure", "Another user has updated this LancamentoCaixa while you were editing.")
-	                    render(view:'edit',model:[lancamentoCaixaInstance:lancamentoCaixaInstance])
-	                    return
-	                }
-	            }
-	            lancamentoCaixaInstance.properties = params
-	            if(!lancamentoCaixaInstance.hasErrors() && lancamentoCaixaInstance.save()) {
-	                flash.message = "LancamentoCaixa ${params.id} updated"
-	                redirect(action:show,id:lancamentoCaixaInstance.id)
-	            }
-	            else {
-	                render(view:'edit',model:[lancamentoCaixaInstance:lancamentoCaixaInstance])
-	            }
-	        }
-	        else {
-	            flash.message = "LancamentoCaixa not found with id ${params.id}"
-	            redirect(action:list)
-	        }			
-		}
+        def lancamentoCaixaInstance = LancamentoCaixa.get( params.id )
+        if(lancamentoCaixaInstance) {
+            if(params.version) {
+                def version = params.version.toLong()
+                if(lancamentoCaixaInstance.version > version) {
+                    
+                    lancamentoCaixaInstance.errors.rejectValue("version", "lancamentoCaixa.optimistic.locking.failure", "Another user has updated this LancamentoCaixa while you were editing.")
+                    render(view:'edit',model:[lancamentoCaixaInstance:lancamentoCaixaInstance])
+                    return
+                }
+            }
+            lancamentoCaixaInstance.properties = params
+            if(!lancamentoCaixaInstance.hasErrors() && lancamentoCaixaInstance.save()) {
+                flash.message = "LancamentoCaixa ${params.id} updated"
+                redirect(action:show,id:lancamentoCaixaInstance.id)
+            }
+            else {
+                render(view:'edit',model:[lancamentoCaixaInstance:lancamentoCaixaInstance])
+            }
+        }
+        else {
+            flash.message = "LancamentoCaixa not found with id ${params.id}"
+            redirect(action:list)
+        }			
     }
 
     def create = {
@@ -99,14 +94,12 @@ class LancamentoCaixaController {
     def save = {
         def lancamentoCaixaInstance = new LancamentoCaixa(params)
 		
-		LancamentoCaixa.withTransaction {
-	        if(lancamentoCaixaInstance.save(flush:true)) {
-	            flash.message = "LancamentoCaixa created"
-	            redirect(action:show,id:lancamentoCaixaInstance.id)
-	        }
-	        else {
-	            render(view:'create',model:[lancamentoCaixaInstance:lancamentoCaixaInstance])
-	        }
-		}
+        if(lancamentoCaixaInstance.save(flush:true)) {
+            flash.message = "LancamentoCaixa created"
+            redirect(action:show,id:lancamentoCaixaInstance.id)
+        }
+        else {
+            render(view:'create',model:[lancamentoCaixaInstance:lancamentoCaixaInstance])
+        }
     }
 }
