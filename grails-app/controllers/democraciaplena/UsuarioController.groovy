@@ -6,21 +6,23 @@ import org.springframework.orm.jpa.JpaTemplate;
 
 class UsuarioController {
     
-	def jpaTemplate
-	
     def index = { redirect(action:list,params:params) }
 
     // the delete, save and update actions only accept POST requests
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
-    def list = {
-        params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-		Usuario.constraints.each{ k, v ->
-			println "${k}"
-			v.constraints.each{ k2, v2 ->
-				println "att ${k2} = ${v2}"
+	def login = {
+		if(params.username && params.password){
+			def usuario = Usuario.findWhere(username: params.username, password: params.password)
+			if(usuario != null){
+				session.usuario = usuario
+				redirect(action: 'list')
 			}
 		}
+	}
+	
+    def list = {
+        params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         [ usuarioInstanceList: Usuario.list( params ), usuarioInstanceTotal: Usuario.count() ]
     }
 

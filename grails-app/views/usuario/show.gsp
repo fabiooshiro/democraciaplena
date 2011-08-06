@@ -12,7 +12,7 @@
             <span class="menuButton"><g:link class="create" action="create">New Usuario</g:link></span>
         </div>
         <div class="body">
-            <h1>Show Usuario :-)</h1>
+            <h1>Show Usuario</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -36,6 +36,13 @@
                         </tr>
                     
                         <tr class="prop">
+                            <td valign="top" class="name">Titulo Eleitor:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:usuarioInstance, field:'tituloEleitor')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
                             <td valign="top" class="name">Email:</td>
                             
                             <td valign="top" class="value">${fieldValue(bean:usuarioInstance, field:'email')}</td>
@@ -50,9 +57,16 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Titulo Eleitor:</td>
+                            <td valign="top" class="name">Password:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:usuarioInstance, field:'tituloEleitor')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:usuarioInstance, field:'password')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Username:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:usuarioInstance, field:'username')}</td>
                             
                         </tr>
                     

@@ -24,11 +24,13 @@
                         
                    	        <g:sortableColumn property="cpf" title="Cpf" />
                         
+                   	        <g:sortableColumn property="tituloEleitor" title="Titulo Eleitor" />
+                        
                    	        <g:sortableColumn property="email" title="Email" />
                         
                    	        <g:sortableColumn property="nome" title="Nome" />
                         
-                   	        <g:sortableColumn property="tituloEleitor" title="Titulo Eleitor" />
+                   	        <g:sortableColumn property="password" title="Password" />
                         
                         </tr>
                     </thead>
@@ -40,11 +42,13 @@
                         
                             <td>${fieldValue(bean:usuarioInstance, field:'cpf')}</td>
                         
+                            <td>${fieldValue(bean:usuarioInstance, field:'tituloEleitor')}</td>
+                        
                             <td>${fieldValue(bean:usuarioInstance, field:'email')}</td>
                         
                             <td>${fieldValue(bean:usuarioInstance, field:'nome')}</td>
                         
-                            <td>${fieldValue(bean:usuarioInstance, field:'tituloEleitor')}</td>
+                            <td>${fieldValue(bean:usuarioInstance, field:'password')}</td>
                         
                         </tr>
                     </g:each>

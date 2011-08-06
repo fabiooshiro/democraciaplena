@@ -10,6 +10,10 @@ class Usuario {
 	
 	String cpf
 	
+	String username
+	
+	String password
+	
 	String toString(){
 		"$nome"	
 	}

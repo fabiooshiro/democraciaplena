@@ -36,6 +36,15 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
+                                    <label for="tituloEleitor">Titulo Eleitor:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:usuarioInstance,field:'tituloEleitor','errors')}">
+                                    <g:textField name="tituloEleitor" value="${usuarioInstance?.tituloEleitor}" />
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
                                     <label for="email">Email:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:usuarioInstance,field:'email','errors')}">
@@ -54,10 +63,19 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="tituloEleitor">Titulo Eleitor:</label>
+                                    <label for="password">Password:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:usuarioInstance,field:'tituloEleitor','errors')}">
-                                    <g:textField name="tituloEleitor" value="${usuarioInstance?.tituloEleitor}" />
+                                <td valign="top" class="value ${hasErrors(bean:usuarioInstance,field:'password','errors')}">
+                                    <g:textField name="password" value="${usuarioInstance?.password}" />
+                                </td>
+                            </tr> 
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="username">Username:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:usuarioInstance,field:'username','errors')}">
+                                    <g:textField name="username" value="${usuarioInstance?.username}" />
                                 </td>
                             </tr> 
                         
