@@ -11,6 +11,5 @@ class LancamentoCaixa{
 	static belongsTo = [usuario: Usuario]
 	
     static constraints = {
-		id visible:false
     }
 }

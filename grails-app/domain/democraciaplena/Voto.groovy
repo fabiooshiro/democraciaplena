@@ -1,34 +1,23 @@
 package democraciaplena
 
-import java.io.Serializable;
-import javax.persistence.*;
+class Voto{
 
-import com.google.appengine.api.datastore.Key;
-
-@Entity
-class Voto implements Serializable {
+	static belongsTo = [
+		usuario: Usuario, 
+		reclamacao: Reclamacao
+	]
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	Usuario usuario
-	
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	Reclamacao reclamacao
+	/**
+	 * Caso o voto tenha sido feito por um representante
+	 */
+	Usuario representante
 	
 	/**
 	 * true para apoiar, ou seja, quem reclama tem razao
 	 */
 	Boolean positivo 
 	
-	/**
-	 * true se esse voto foi criado pelo representante
-	 */
-	Boolean porRepresentante
-	
     static constraints = {
-		reclamacao(nullable: true)
+		representante(nullable: true)
     }
 }

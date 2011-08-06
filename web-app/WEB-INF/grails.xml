@@ -1,8 +1,5 @@
 <grails>
   <resources>
-    <resource>oshiro.gorm.gae.GaePluginSupportService</resource>
-    <resource>org.grails.appengine.AppEngineReloadController</resource>
-    <resource>TestController</resource>
     <resource>democraciaplena.Tipo</resource>
     <resource>democraciaplena.Reclamacao</resource>
     <resource>democraciaplena.Voto</resource>
@@ -23,6 +20,7 @@
     <resource>BuildConfig</resource>
   </resources>
   <plugins>
+    <plugin>TomcatGrailsPlugin</plugin>
     <plugin>DemocraciaPlenaGrailsPlugin</plugin>
   </plugins>
 </grails>

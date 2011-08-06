@@ -1,7 +1,6 @@
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
-grails.plugin.location.gormGae = "../gorm-gae"
 //google.appengine.sdk="/home/oshiro/springsource/sts-2.6.0.RELEASE/plugins/com.google.appengine.eclipse.sdkbundle_1.5.1.r36v201106211634/appengine-java-sdk-1.5.1"
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 grails.project.dependency.resolution = {
