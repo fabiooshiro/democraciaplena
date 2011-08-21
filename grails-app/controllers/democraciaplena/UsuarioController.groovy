@@ -1,5 +1,3 @@
-
-
 package democraciaplena
 
 import org.springframework.orm.jpa.JpaTemplate;
@@ -20,7 +18,12 @@ class UsuarioController {
 			}
 		}
 	}
-	
+
+    def checkGoogleService = {
+        def userService = UserServiceFactory.getUserService();
+        render userService.getCurrentUser().getNickName()
+    }    
+
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         [ usuarioInstanceList: Usuario.list( params ), usuarioInstanceTotal: Usuario.count() ]

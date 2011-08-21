@@ -23,41 +23,59 @@
                     
                         <tr class="prop">
                             <td valign="top" class="name">Id:</td>
-                            
                             <td valign="top" class="value">${fieldValue(bean:reclamacaoInstance, field:'id')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Texto:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:reclamacaoInstance, field:'texto')}</td>
-                            
                         </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Titulo:</td>
-                            
                             <td valign="top" class="value">${fieldValue(bean:reclamacaoInstance, field:'titulo')}</td>
-                            
                         </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Texto:</td>
+                            <td valign="top" class="value">${reclamacaoInstance?.texto?.encodeAsHTML().replace('\n','<br />')}</td>
+                        </tr>                    
                     
                         <tr class="prop">
                             <td valign="top" class="name">Usuario:</td>
-                            
                             <td valign="top" class="value"><g:link controller="usuario" action="show" id="${reclamacaoInstance?.usuario?.id}">${reclamacaoInstance?.usuario?.encodeAsHTML()}</g:link></td>
-                            
                         </tr>
-                    
                     </tbody>
                 </table>
             </div>
             <div class="buttons">
                 <g:form>
                     <input type="hidden" name="id" value="${reclamacaoInstance?.id}" />
-                    <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
+                    <g:if test="${reclamacaoInstance?.usuario?.id == session.usuario.id}">
+                        <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
+                        <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
+                    </g:if>
+                    <span class="button"><g:actionSubmit class="edit" value="Concordo" /></span>
+                    <span class="button"><g:actionSubmit class="edit" value="Discordo" /></span>
                 </g:form>
+            </div>
+            <br />
+            <div class="list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Usuario
+                            </th>
+                            <th>
+                                Concorda?
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <g:each var="voto" in="${votoList}">
+                            <tr>
+                                <td>${(voto.usuario).encodeAsHTML()}</td>
+                                <td> ${voto.positivo?'concorda':'discorda'}</td>
+                            </tr>
+                        </g:each>
+                    </tbody>
+                </table>
             </div>
         </div>
     </body>

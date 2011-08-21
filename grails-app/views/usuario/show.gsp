@@ -44,30 +44,17 @@
                     
                         <tr class="prop">
                             <td valign="top" class="name">Email:</td>
-                            
                             <td valign="top" class="value">${fieldValue(bean:usuarioInstance, field:'email')}</td>
-                            
                         </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Nome:</td>
-                            
                             <td valign="top" class="value">${fieldValue(bean:usuarioInstance, field:'nome')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Password:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:usuarioInstance, field:'password')}</td>
-                            
                         </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Username:</td>
-                            
                             <td valign="top" class="value">${fieldValue(bean:usuarioInstance, field:'username')}</td>
-                            
                         </tr>
                     
                     </tbody>

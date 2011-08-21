@@ -13,6 +13,44 @@ class ReclamacaoController {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         [ reclamacaoInstanceList: Reclamacao.list( params ), reclamacaoInstanceTotal: Reclamacao.count() ]
     }
+    
+    def discordo = {
+        def reclamacaoInstance = Reclamacao.get(params.id)
+        if(!reclamacaoInstance) {
+            flash.message = "Reclamacao not found with id ${params.id}"
+            redirect(action:list)
+        }else{
+            def usuario = Usuario.get(session.usuario.id)
+            def voto = Voto.findWhere(reclamacaoId: reclamacaoInstance.id, usuarioId: usuario.id)
+            if(!voto){
+                println("novo voto")
+                new Voto(reclamacao: reclamacaoInstance, usuario: usuario, positivo: false).save(failOnError: true)
+            }else{
+                voto.positivo = false
+                voto.save(failOnError: true)
+            }
+            redirect(action:show, params:[id: params.id])
+        }
+    }
+    
+    def concordo = {
+        def reclamacaoInstance = Reclamacao.get(params.id)
+        if(!reclamacaoInstance) {
+            flash.message = "Reclamacao not found with id ${params.id}"
+            redirect(action:list)
+        }else{
+            def usuario = Usuario.get(session.usuario.id)
+            def voto = Voto.findWhere(reclamacaoId: reclamacaoInstance.id, usuarioId: usuario.id)
+            if(!voto){
+                println("novo voto")
+                new Voto(reclamacao: reclamacaoInstance, usuario: usuario, positivo: true).save(failOnError: true)
+            }else{
+                voto.positivo = true
+                voto.save(failOnError: true)
+            }
+            redirect(action:show, params:[id: params.id])
+        }
+    }
 
     def show = {
         def reclamacaoInstance = Reclamacao.get( params.id )
@@ -20,8 +58,10 @@ class ReclamacaoController {
         if(!reclamacaoInstance) {
             flash.message = "Reclamacao not found with id ${params.id}"
             redirect(action:list)
+        } else { 
+            def votoList = Voto.findAllWhere(reclamacaoId: reclamacaoInstance.id)
+            return [ reclamacaoInstance : reclamacaoInstance, votoList: votoList ] 
         }
-        else { return [ reclamacaoInstance : reclamacaoInstance ] }
     }
 
     def delete = {
@@ -95,6 +135,7 @@ class ReclamacaoController {
     def save = {
         def reclamacaoInstance = new Reclamacao(params)
 		Reclamacao.withTransaction {
+			reclamacaoInstance.usuario = Usuario.get(session.usuario.id)
 	        if(reclamacaoInstance.save(flush:true)) {
 	            flash.message = "Reclamacao ${reclamacaoInstance.id} created"
 	            redirect(action:show,id:reclamacaoInstance.id)

@@ -2,6 +2,13 @@
   <resources>
     <resource>org.grails.appengine.AppEngineReloadController</resource>
     <resource>oshiro.gorm.gae.GaePluginSupportService</resource>
+    <resource>JQueryConfig</resource>
+    <resource>JQueryPluginResources</resource>
+    <resource>JQueryService</resource>
+    <resource>JQueryResourceTagLib</resource>
+    <resource>JQueryTagLib</resource>
+    <resource>JqueryUiPluginResources</resource>
+    <resource>com.grailsrocks.jqueryui.JqueryUiTagLib</resource>
     <resource>BootStrap</resource>
     <resource>BuildConfig</resource>
     <resource>Config</resource>
@@ -22,9 +29,12 @@
     <resource>democraciaplena.Tipo</resource>
     <resource>democraciaplena.Usuario</resource>
     <resource>democraciaplena.Voto</resource>
+    <resource>com.grailsrocks.jqueryui.JqUiTagLib</resource>
   </resources>
   <plugins>
     <plugin>GormGaeGrailsPlugin</plugin>
+    <plugin>JqueryGrailsPlugin</plugin>
+    <plugin>JqueryUiGrailsPlugin</plugin>
     <plugin>TomcatGrailsPlugin</plugin>
   </plugins>
 </grails>

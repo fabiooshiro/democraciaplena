@@ -24,10 +24,8 @@ class LoginFilters {
 						def usuario = Usuario.findWhere(email: user.getEmail())
 						if(!usuario){
 							new Usuario(
-								nome: user.getNickName(),
+								nome: user.getNickname(),
 								email: user.getEmail(),
-								tituloEleitor: '',
-								cpf: '00',
 								username: user.getEmail(),
 								password: 'inicial'
 							).save(failOnError: true)
