@@ -23,14 +23,14 @@ class LoginFilters {
 						}
 						def usuario = Usuario.findWhere(email: user.getEmail())
 						if(!usuario){
-							new Usuario(
+							usuario = new Usuario(
 								nome: user.getNickname(),
 								email: user.getEmail(),
 								username: user.getEmail(),
 								password: 'inicial'
 							).save(failOnError: true)
 						}
-						session.usuario = user
+						session.usuario = usuario
 					}catch(e){
 						e.printStackTrace()
 					}
