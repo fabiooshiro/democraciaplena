@@ -21,6 +21,7 @@ class Usuario {
     static constraints = {
     	cpf(unique: true)
     	tituloEleitor(unique: true)
+		email(unique: true)
 	}
 }
 
