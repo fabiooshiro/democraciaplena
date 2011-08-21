@@ -30,8 +30,6 @@
                         
                    	        <g:sortableColumn property="nome" title="Nome" />
                         
-                   	        <g:sortableColumn property="password" title="Password" />
-                        
                         </tr>
                     </thead>
                     <tbody>
@@ -47,8 +45,6 @@
                             <td>${fieldValue(bean:usuarioInstance, field:'email')}</td>
                         
                             <td>${fieldValue(bean:usuarioInstance, field:'nome')}</td>
-                        
-                            <td>${fieldValue(bean:usuarioInstance, field:'password')}</td>
                         
                         </tr>
                     </g:each>

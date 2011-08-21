@@ -1,6 +1,8 @@
 package democraciaplena
 
-class Usuario {
+import java.io.Serializable
+
+class Usuario implements Serializable{
 
 	String nome
 	
@@ -21,6 +23,7 @@ class Usuario {
     static constraints = {
     	cpf(unique: true)
     	tituloEleitor(unique: true)
+		username(unique: true)
 	}
 }
 

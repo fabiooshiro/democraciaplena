@@ -30,15 +30,6 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="texto">Texto:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:reclamacaoInstance,field:'texto','errors')}">
-                                    <g:textField name="texto" value="${reclamacaoInstance?.texto}" />
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
                                     <label for="titulo">Titulo:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:reclamacaoInstance,field:'titulo','errors')}">
@@ -48,12 +39,12 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="usuario">Usuario:</label>
+                                    <label for="texto">Texto:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:reclamacaoInstance,field:'usuario','errors')}">
-                                    <g:select name="usuario.id" from="${democraciaplena.Usuario.list()}" optionKey="id" value="${reclamacaoInstance?.usuario?.id}"  />
+                                <td valign="top" class="value ${hasErrors(bean:reclamacaoInstance,field:'texto','errors')}">
+                                    <g:textArea name="texto" value="${reclamacaoInstance?.texto}" />
                                 </td>
-                            </tr> 
+                            </tr>
                         
                         </tbody>
                     </table>
