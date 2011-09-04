@@ -18,12 +18,16 @@
     <resource>UrlMappings</resource>
     <resource>democraciaplena.AdmController</resource>
     <resource>democraciaplena.LancamentoCaixaController</resource>
+    <resource>democraciaplena.MatrizPrioridadeVotoController</resource>
+    <resource>democraciaplena.ProblemaController</resource>
     <resource>democraciaplena.ReclamacaoController</resource>
     <resource>democraciaplena.UsuarioController</resource>
     <resource>democraciaplena.VotoController</resource>
     <resource>democraciaplena.LancamentoCaixa</resource>
     <resource>democraciaplena.Localizacao</resource>
+    <resource>democraciaplena.MatrizPrioridadeVoto</resource>
     <resource>democraciaplena.Mensagem</resource>
+    <resource>democraciaplena.Problema</resource>
     <resource>democraciaplena.Reclamacao</resource>
     <resource>democraciaplena.Representante</resource>
     <resource>democraciaplena.Tipo</resource>

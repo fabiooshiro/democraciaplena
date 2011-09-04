@@ -1,4 +1,4 @@
-<%@ page import="democraciaplena.Reclamacao" %>
+<%@ page import="democraciaplena.Problema" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="nav">
-            <span class="menuButton"><a class="home" href="${resource(dir:'/')}">Home</a></span>
+            <span class="menuButton"><a class="home" href="/">Home</a></span>
             <span class="menuButton"><g:link class="list" action="list">Problema List</g:link></span>
             <span class="menuButton"><g:link class="create" action="create">New Problema</g:link></span>
         </div>
@@ -16,14 +16,14 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
-            <g:hasErrors bean="${reclamacaoInstance}">
+            <g:hasErrors bean="${problemaInstance}">
             <div class="errors">
-                <g:renderErrors bean="${reclamacaoInstance}" as="list" />
+                <g:renderErrors bean="${problemaInstance}" as="list" />
             </div>
             </g:hasErrors>
             <g:form method="post" >
-                <input type="hidden" name="id" value="${reclamacaoInstance?.id}" />
-                <input type="hidden" name="version" value="${reclamacaoInstance?.version}" />
+                <input type="hidden" name="id" value="${problemaInstance?.id}" />
+                <input type="hidden" name="version" value="${problemaInstance?.version}" />
                 <div class="dialog">
                     <table>
                         <tbody>
@@ -32,19 +32,26 @@
                                 <td valign="top" class="name">
                                     <label for="titulo">Titulo:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:reclamacaoInstance,field:'titulo','errors')}">
-                                    <g:textField name="titulo" value="${reclamacaoInstance?.titulo}" />
+                                <td valign="top" class="value ${hasErrors(bean:problemaInstance,field:'titulo','errors')}">
+                                    <g:textField name="titulo" value="${problemaInstance?.titulo}" />
                                 </td>
                             </tr> 
-                        
-                            <tr class="prop">
+                       		<tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="texto">Texto:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:reclamacaoInstance,field:'texto','errors')}">
-                                    <g:textArea name="texto" value="${reclamacaoInstance?.texto}" />
+                                <td valign="top" class="value ${hasErrors(bean:problemaInstance,field:'texto','errors')}">
+                                    <g:textField name="texto" value="${problemaInstance?.texto}" />
                                 </td>
-                            </tr>
+                            </tr> 
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="usuario">Usuario:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:problemaInstance,field:'usuario','errors')}">
+                                    <g:select name="usuario.id" from="${democraciaplena.Usuario.list()}" optionKey="id" value="${problemaInstance?.usuario?.id}"  />
+                                </td>
+                            </tr> 
                         
                         </tbody>
                     </table>

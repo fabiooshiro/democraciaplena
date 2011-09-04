@@ -15,7 +15,7 @@ class Voto{
 	/**
 	 * true para apoiar, ou seja, quem reclama tem razao
 	 */
-	Boolean positivo 
+	Boolean positivo
 	
     static constraints = {
 		representante(nullable: true)

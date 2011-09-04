@@ -87,7 +87,7 @@
             <div id="controllerList" class="dialog">
                 <h2>Funcionalidades:</h2>
                 <ul>
-                	<li class="controller"><g:link controller="reclamacao">Reclama&ccedil;&atilde;o</g:link></li>
+                	<li class="controller"><g:link controller="problema">N.E. Problemas</g:link></li>
                 </ul>
             </div>
         </div>

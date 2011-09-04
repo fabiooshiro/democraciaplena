@@ -1,12 +1,10 @@
 package democraciaplena
 
-class Reclamacao{
+class Problema{
 
 	String titulo
 	
 	String texto
-	
-	Localizacao localizacao
 	
 	String toString(){
 		titulo + ' ' + id
