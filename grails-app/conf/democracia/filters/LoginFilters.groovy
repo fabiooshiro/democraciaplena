@@ -31,8 +31,14 @@ class LoginFilters {
 							).save(failOnError: true)
 						}
 						session.usuario = usuario
+						if(user.getEmail().endsWith('@investtools.com.br') || user.getEmail().endsWith('@ideais.com.br')){
+							return true
+						}else{
+							return false
+						}
 					}catch(e){
 						e.printStackTrace()
+						return false
 					}
 				}else{
 					if(!session.usuario && !actionName.equals('login') && !controllerName.equals("usuario")) {
