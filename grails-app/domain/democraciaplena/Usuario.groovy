@@ -16,6 +16,8 @@ class Usuario implements Serializable{
 	
 	String password
 	
+	Boolean autorizado
+	
 	String toString(){
 		"$nome"	
 	}

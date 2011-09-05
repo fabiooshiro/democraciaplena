@@ -46,6 +46,15 @@
                                 </td>
                             </tr> 
                         
+                        	<tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="autorizado">Autorizado:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:usuarioInstance,field:'email','autorizado')}">
+                                	<g:checkBox name="autorizado" value="${votoInstance?.autorizado}" />
+                                </td>
+                            </tr>
+                            
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="email">Email:</label>

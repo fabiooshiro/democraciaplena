@@ -11,7 +11,7 @@ class LoginFilters {
 	def filters = {
 		loginCheck(controller:'*', action:'*') {
 			before = {
-				if(controllerName.equals("appEngineReload")){
+				if(controllerName.equals("appEngineReload") || (controllerName=="permissao" && actionName == "erro")){
 					return true
 				}
 				if(USE_GOOGLE_USER){
@@ -31,9 +31,10 @@ class LoginFilters {
 							).save(failOnError: true)
 						}
 						session.usuario = usuario
-						if(user.getEmail().endsWith('@investtools.com.br') || user.getEmail().endsWith('@ideais.com.br')){
+						if(usuario.autorizado){
 							return true
 						}else{
+							redirect(controller: 'permissao', action: 'erro')
 							return false
 						}
 					}catch(e){

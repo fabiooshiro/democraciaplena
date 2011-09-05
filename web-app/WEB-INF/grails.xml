@@ -19,6 +19,7 @@
     <resource>democraciaplena.AdmController</resource>
     <resource>democraciaplena.LancamentoCaixaController</resource>
     <resource>democraciaplena.MatrizPrioridadeVotoController</resource>
+    <resource>democraciaplena.PermissaoController</resource>
     <resource>democraciaplena.ProblemaController</resource>
     <resource>democraciaplena.ReclamacaoController</resource>
     <resource>democraciaplena.UsuarioController</resource>

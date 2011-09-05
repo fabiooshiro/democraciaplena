@@ -42,7 +42,12 @@
                             <td>${votosMap.get('' + problemaInstance.id).beneficio }</td>
                             <td>${votosMap.get('' + problemaInstance.id).probabilidade }</td>
                             <td>${votosMap.get('' + problemaInstance.id).total }</td>
-                            <td><g:link action="create" controller="matrizPrioridadeVoto" params="['problema.id': problemaInstance.id]">Votar</g:link></td>
+                            <td>
+                            	<g:link action="create" controller="matrizPrioridadeVoto" params="['problema.id': problemaInstance.id]">Votar</g:link>
+                            	<g:if test="${votosMap.get('' + problemaInstance.id).votado }">
+                            		v
+                            	</g:if>
+                            </td>
                         </tr>
                     </g:each>
                     </tbody>

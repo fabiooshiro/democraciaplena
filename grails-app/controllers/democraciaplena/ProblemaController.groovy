@@ -13,14 +13,17 @@ class ProblemaController {
 		def problemaInstanceList = Problema.list()
 		def votosMap = [:]
 		problemaInstanceList.each{ problema ->
-			def pVoto = [simplicidade: 0, dependencia: 0, tempo: 0, beneficio: 0, probabilidade: 0, total: 0]
+			def pVoto = [simplicidade: 0, dependencia: 0, tempo: 0, beneficio: 0, probabilidade: 0, total: 0, votado: false]
 			MatrizPrioridadeVoto.findAllWhere(problemaId: problema.id).each{ voto ->
 				pVoto.simplicidade += voto.simplicidade
 				pVoto.dependencia += voto.dependencia
 				pVoto.tempo += voto.tempo
 				pVoto.beneficio += voto.beneficio
 				pVoto.probabilidade += voto.probabilidade
-				pVoto.total += (voto.simplicidade + voto.dependencia + voto.tempo + voto.beneficio + voto.probabilidade)  
+				pVoto.total += (voto.simplicidade + voto.dependencia + voto.tempo + voto.beneficio + voto.probabilidade)
+				if(voto.usuario.id == session.usuario.id){
+					pVoto.votado = true
+				}
 			}
 			votosMap.put('' + problema.id, pVoto)
 		}
